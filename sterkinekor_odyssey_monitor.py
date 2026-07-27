@@ -1,4 +1,4 @@
-"""Watch Ster-Kinekor for new The Odyssey showtimes.
+"""Watch Ster-Kinekor for new The Odyssey showtimes, and grade the seats.
 
 Ster-Kinekor's site (FilmGrail/mars) exposes an unauthenticated JSON API behind
 /api/ExecuteApiMethod. Two methods are all we need:
@@ -9,14 +9,24 @@ Ster-Kinekor's site (FilmGrail/mars) exposes an unauthenticated JSON API behind
 Ster-Kinekor releases showtimes a week at a time, so the signal for "a new date
 dropped" is the last bookable date moving forward. This script snapshots every
 watched cinema, diffs against the previous snapshot on disk, and reports what is
-new -- flagging premium formats (IMAX, Cine Prestige, 4DX) first, since those
-are the seats worth racing for.
+new -- flagging premium formats (IMAX, Cine Prestige) first.
+
+It also grades the actual seats. GET /booking/seatmap/{showId} embeds the whole
+seat plan server-side, each seat carrying a state of "available" or "booked", so a
+plain HTTP GET reveals exactly what is left. Evening IMAX shows at V&A routinely
+sell down to single-digit seats, so the point of catching a drop early is the
+centre block -- and this reports whether it is still open.
+
+Seatmaps are only fetched for premium shows on newly dropped dates (that is when
+the answer matters and when the map is cheap to read), or on demand via --seats.
 
 Usage:
     python3 sterkinekor_odyssey_monitor.py                  # diff + update state
     python3 sterkinekor_odyssey_monitor.py --dry-run        # diff, leave state alone
     python3 sterkinekor_odyssey_monitor.py --all-cinemas    # every Ster-Kinekor site
     python3 sterkinekor_odyssey_monitor.py --json           # machine-readable diff
+    python3 sterkinekor_odyssey_monitor.py --seats 10-582163  # grade one show now
+    python3 sterkinekor_odyssey_monitor.py --best-seats       # grade every premium show
 
 Exit codes: 0 = no change, 10 = something new, 1 = error.
 """
@@ -45,8 +55,10 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 )
 
-# Cape Town + surrounds. Ordered by how much we care: V&A is the only site with
-# both IMAX and Cine Prestige for this title.
+# V&A is the only Cape Town site with both IMAX and Cine Prestige, and it is the
+# one being watched. The rest are kept so --cinema can reach them by name.
+WATCHED = ["V&A"]
+
 CAPE_TOWN = {
     "V&A": 10,
     "Blue Route": 17,
@@ -63,6 +75,15 @@ PREMIUM = ("IMAX", "CINE PRESTIGE", "PRESTIGE", "4DX", "D-BOX")
 
 # Cinemas whose premium screens we shout about loudest.
 PRIORITY_CINEMAS = ("V&A",)
+
+# What counts as a good seat. Dead centre horizontally, about two-thirds back --
+# the reference position for a big screen. A seat is "prime" when it sits inside
+# the ellipse these two tolerances describe.
+IDEAL_DEPTH = 0.66      # 0.0 = front row, 1.0 = back row
+DEPTH_TOLERANCE = 0.30  # how far off ideal_depth a prime seat may sit
+WIDTH_TOLERANCE = 0.45  # how far off centre, as a fraction of half the row
+
+DEFAULT_GROUP = 2       # seats wanted side by side
 
 
 class ApiError(RuntimeError):
@@ -115,6 +136,127 @@ def fetch_locations():
                 for loc in data["locations"]
             ]
     raise ApiError("could not find the cinema list on the movie page")
+
+
+def fetch_seatmap(show_id, retries=3):
+    """Seat plan for a show. The whole map is server-rendered into the page."""
+    url = f"{BASE}/booking/seatmap/{show_id}"
+    last = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=40) as resp:
+                html = resp.read().decode("utf-8", "ignore")
+            start = html.find("%7B%22_blockName%22%3A%22BookingSeatmap%22")
+            if start < 0:
+                raise ApiError(f"no seatmap block on the page for {show_id}")
+            blob = re.match(r"%7B%22.*?(?=\")", html[start:])
+            data = json.loads(urllib.parse.unquote(blob.group(0)))
+            return data["serverData"]["seatmap"]["seats"]
+        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError,
+                AttributeError, KeyError) as exc:
+            last = exc
+            if attempt < retries - 1:
+                time.sleep(2 ** attempt)
+    raise ApiError(f"seatmap {show_id} failed after {retries} tries: {last}")
+
+
+def grade_seats(seats, group=DEFAULT_GROUP):
+    """Score a seat plan and find the best run of `group` free seats together.
+
+    Rows come back with coordY increasing away from the screen and coordX across
+    the row, so the geometry works for any auditorium without hardcoding a
+    layout. Returns None when the map has no real seats.
+    """
+    real = [s for s in seats if s.get("type") != "wheelchair"]
+    if not real:
+        return None
+
+    xs = [s["coordX"] for s in real]
+    centre_x = (min(xs) + max(xs)) / 2
+    half = (max(xs) - min(xs)) / 2 or 1
+
+    depths = sorted({s["coordY"] for s in real})
+    span = (depths[-1] - depths[0]) or 1
+
+    def offsets(seat):
+        across = (seat["coordX"] - centre_x) / half
+        back = (seat["coordY"] - depths[0]) / span
+        return across, back
+
+    def penalty(seat):
+        across, back = offsets(seat)
+        return ((across / WIDTH_TOLERANCE) ** 2
+                + ((back - IDEAL_DEPTH) / DEPTH_TOLERANCE) ** 2)
+
+    available = [s for s in real if s["state"] == "available"]
+
+    # The ellipse suits a full-size auditorium, but a 19-seat Cine Prestige
+    # lounge would collapse to a single "prime" seat. Keep the block at a
+    # sensible fraction of the room by taking the best-scoring seats instead.
+    ranked = sorted(real, key=penalty)
+    strict = sum(1 for s in real if penalty(s) <= 1)
+    prime_count = max(strict, min(len(real), max(4, round(0.15 * len(real)))))
+    prime = ranked[:prime_count]
+    prime_free = [s for s in prime if s["state"] == "available"]
+
+    def label(seat):
+        return f"{seat['rowSymbol']}{seat['columnSymbol']}"
+
+    best_single = min(available, key=penalty) if available else None
+
+    # Best run of `group` adjacent free seats. Adjacent = same row, next seat
+    # along, with no aisle-sized gap between them.
+    best_block, best_block_penalty = None, None
+    by_row = {}
+    for seat in available:
+        by_row.setdefault(seat["rowSymbol"], []).append(seat)
+    for row_seats in by_row.values():
+        row_seats.sort(key=lambda s: s["coordX"])
+        run = [row_seats[0]]
+        for prev, seat in zip(row_seats, row_seats[1:]):
+            gap = seat["coordX"] - prev["coordX"]
+            if gap <= prev.get("width", 34) * 1.4:
+                run.append(seat)
+            else:
+                run = [seat]
+            if len(run) >= group:
+                window = run[-group:]
+                score = sum(penalty(s) for s in window) / group
+                if best_block_penalty is None or score < best_block_penalty:
+                    best_block, best_block_penalty = list(window), score
+
+    return {
+        "total": len(real),
+        "available": len(available),
+        "sold_pct": round(100 * (1 - len(available) / len(real))),
+        "prime_total": len(prime),
+        "prime_available": len(prime_free),
+        "best_seat": label(best_single) if best_single else None,
+        "best_seat_is_prime": bool(best_single) and penalty(best_single) <= 1,
+        "best_block": [label(s) for s in best_block] if best_block else None,
+        "best_block_is_prime": best_block_penalty is not None and best_block_penalty <= 1,
+        "group": group,
+    }
+
+
+def seat_summary(grade):
+    """One-line verdict on a graded show."""
+    if not grade:
+        return "no seat data"
+    if grade["available"] == 0:
+        return "SOLD OUT"
+    bits = [f"{grade['available']}/{grade['total']} free ({grade['sold_pct']}% sold)"]
+    if grade["prime_available"]:
+        bits.append(f"{grade['prime_available']}/{grade['prime_total']} centre-block free")
+    else:
+        bits.append("centre block GONE")
+    if grade["best_block"]:
+        tag = "prime" if grade["best_block_is_prime"] else "best available"
+        bits.append(f"{grade['group']} together at {'+'.join(grade['best_block'])} ({tag})")
+    elif grade["best_seat"]:
+        bits.append(f"only singles, best {grade['best_seat']}")
+    return " | ".join(bits)
 
 
 def snapshot_cinema(cinema):
@@ -218,6 +360,37 @@ def has_changes(changes):
     return any(changes[k] for k in ("new_dates", "new_shows"))
 
 
+def premium_shows_in(changes):
+    """Every newly-listed premium show, newest dates first."""
+    found = []
+    for entry in changes["new_dates"]:
+        for show in entry["shows"]:
+            if is_premium(show["formats"]):
+                found.append(show)
+    for show in changes["new_shows"]:
+        if is_premium(show["formats"]):
+            found.append(show)
+    return found
+
+
+def attach_seat_grades(shows, group=DEFAULT_GROUP, limit=30, workers=4):
+    """Grade the seat plan for each show, in place. Best-effort: a seatmap that
+    fails to load leaves the show ungraded rather than failing the run."""
+    targets = shows[:limit]
+    if not targets:
+        return
+
+    def grade(show):
+        try:
+            return show, grade_seats(fetch_seatmap(show["showId"]), group=group)
+        except (ApiError, urllib.error.URLError, OSError):
+            return show, None
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for show, result in pool.map(grade, targets):
+            show["seats"] = result
+
+
 def describe(snapshot, changes, cinemas):
     """Human-readable report. First line is the headline for a push notification."""
     lines = []
@@ -246,6 +419,21 @@ def describe(snapshot, changes, cinemas):
                f"{', dates ' + ', '.join(new_days) if new_days else ''})"
                if len(premium_hits) > 1 else "")
         )
+        # The headline is what lands in a push notification, so say plainly
+        # whether the seats worth having are actually still there.
+        graded = [h for h in premium_hits if h[2].get("seats")]
+        if graded:
+            wide_open = [h for h in graded if h[2]["seats"]["prime_available"]
+                         >= 0.8 * max(h[2]["seats"]["prime_total"], 1)]
+            if wide_open:
+                best = wide_open[0][2]["seats"]
+                lines.append(
+                    f"Centre block wide open: {best['prime_available']}/"
+                    f"{best['prime_total']} prime seats free"
+                    + (f", grab {'+'.join(best['best_block'])}" if best["best_block"] else "")
+                )
+            else:
+                lines.append(f"Seats: {seat_summary(graded[0][2]['seats'])}")
     elif changes["new_dates"]:
         first = changes["new_dates"][0]
         lines.append(
@@ -278,6 +466,8 @@ def describe(snapshot, changes, cinemas):
                 lines.append(
                     f"      {show['time']:>9}  {fmt:<22} {show['screen']:<10} {show['url']}{tag}"
                 )
+                if show.get("seats"):
+                    lines.append(f"                 seats: {seat_summary(show['seats'])}")
             if not any(is_premium(s["formats"]) for s in entry["shows"]):
                 lines.append("      (no premium screens on this date yet)")
 
@@ -291,6 +481,8 @@ def describe(snapshot, changes, cinemas):
                 f"  {show['cinema']:<14} {show['date']} {show['time']:>9}  "
                 f"{fmt:<22} {show['url']}{tag}"
             )
+            if show.get("seats"):
+                lines.append(f"                 seats: {seat_summary(show['seats'])}")
 
     if changes["gone"]:
         lines.append("")
@@ -343,7 +535,7 @@ def resolve_cinemas(args):
     if args.all_cinemas:
         return fetch_locations()
     known = {c["title"]: c for c in fetch_locations()}
-    names = args.cinema or list(CAPE_TOWN)
+    names = args.cinema or WATCHED
     cinemas = []
     for name in names:
         if name in known:
@@ -355,6 +547,45 @@ def resolve_cinemas(args):
     return cinemas
 
 
+def report_best_seats(args):
+    """Grade every premium show currently on sale at the watched cinemas."""
+    try:
+        cinemas = resolve_cinemas(args)
+        snapshot = take_snapshot(cinemas)
+    except (ApiError, urllib.error.URLError, OSError) as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 1
+
+    shows = []
+    for cinema, dates in snapshot.items():
+        for date, day in dates.items():
+            for show_id, show in day.items():
+                if is_premium(show["formats"]):
+                    shows.append(dict(show, cinema=cinema, date=date, showId=show_id,
+                                      url=f"{BASE}/booking/seatmap/{show_id}"))
+    shows.sort(key=lambda s: (s["date"], premium_rank(s["formats"]), s["start"]))
+    if not shows:
+        print("no premium shows on sale")
+        return 0
+
+    attach_seat_grades(shows, group=args.group, limit=len(shows))
+
+    if args.json:
+        print(json.dumps(shows, indent=1, sort_keys=True))
+        return 0
+
+    print(f"{MOVIE_TITLE} -- premium shows on sale, seats wanted together: {args.group}\n")
+    current = None
+    for show in shows:
+        if show["date"] != current:
+            current = show["date"]
+            print(current)
+        print(f"  {show['cinema']:<8} {show['time']:>9} "
+              f"{premium_label(show['formats']):<16} {seat_summary(show.get('seats'))}")
+        print(f"           {show['url']}")
+    return 0
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--state", default=STATE_PATH, help="snapshot file to diff against")
@@ -362,7 +593,30 @@ def main(argv=None):
     parser.add_argument("--all-cinemas", action="store_true", help="watch every Ster-Kinekor site")
     parser.add_argument("--cinema", action="append", help="cinema title, repeatable")
     parser.add_argument("--json", action="store_true", help="emit the diff as JSON")
+    parser.add_argument("--seats", metavar="SHOWID", action="append",
+                        help="grade one show's seat plan and exit, repeatable")
+    parser.add_argument("--best-seats", action="store_true",
+                        help="grade every premium show currently on sale and exit")
+    parser.add_argument("--group", type=int, default=DEFAULT_GROUP,
+                        help=f"seats wanted side by side (default {DEFAULT_GROUP})")
     args = parser.parse_args(argv)
+
+    if args.seats:
+        for show_id in args.seats:
+            try:
+                grade = grade_seats(fetch_seatmap(show_id), group=args.group)
+            except (ApiError, urllib.error.URLError, OSError) as exc:
+                print(f"{show_id}: error: {exc}", file=sys.stderr)
+                return 1
+            if args.json:
+                print(json.dumps({show_id: grade}, indent=1, sort_keys=True))
+            else:
+                print(f"{show_id}  {BASE}/booking/seatmap/{show_id}")
+                print(f"    {seat_summary(grade)}")
+        return 0
+
+    if args.best_seats:
+        return report_best_seats(args)
 
     try:
         cinemas = resolve_cinemas(args)
@@ -377,6 +631,11 @@ def main(argv=None):
     old = load_state(args.state)
     changes = diff(old, snapshot)
     first_run = not old
+
+    # Seatmaps are big, so only read them when a drop actually happened -- that
+    # is the moment the centre block is still open and the answer is worth having.
+    if not first_run and has_changes(changes):
+        attach_seat_grades(premium_shows_in(changes), group=args.group)
 
     if args.json:
         print(json.dumps({"firstRun": first_run, "changes": changes, "snapshot": snapshot},
