@@ -388,7 +388,9 @@ def main(argv=None):
     else:
         print(describe(snapshot, changes, cinemas))
 
-    if not args.dry_run:
+    # Only rewrite state when the listings actually moved, so a no-change run
+    # leaves the working tree clean and the scheduled job has nothing to commit.
+    if not args.dry_run and (first_run or snapshot != old):
         save_state(args.state, snapshot)
 
     # First run has nothing to compare against, so it is never "a drop".
