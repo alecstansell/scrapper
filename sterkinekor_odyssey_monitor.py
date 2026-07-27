@@ -599,6 +599,11 @@ def main(argv=None):
                         help="grade every premium show currently on sale and exit")
     parser.add_argument("--group", type=int, default=DEFAULT_GROUP,
                         help=f"seats wanted side by side (default {DEFAULT_GROUP})")
+    parser.add_argument("--since", metavar="YYYY-MM-DD",
+                        help="stateless check: treat any date after this as newly "
+                             "dropped. Needs no state file, so it works anywhere.")
+    parser.add_argument("--horizon", action="store_true",
+                        help="print the last bookable date and exit")
     args = parser.parse_args(argv)
 
     if args.seats:
@@ -627,6 +632,23 @@ def main(argv=None):
     except (ApiError, urllib.error.URLError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
+
+    if args.horizon:
+        ends = sorted({h for h in (horizon(d) for d in snapshot.values()) if h})
+        print(ends[-1] if ends else "none")
+        return 0
+
+    if args.since:
+        # Stateless mode: anything past the cutoff counts as newly dropped. This
+        # needs no state file and no repo, so a scheduled job can run it in a
+        # bare container -- which is where the file-backed mode fell over.
+        old = {c: {d: shows for d, shows in dates.items() if d <= args.since}
+               for c, dates in snapshot.items()}
+        changes = diff(old, snapshot)
+        if has_changes(changes):
+            attach_seat_grades(premium_shows_in(changes), group=args.group)
+        print(describe(snapshot, changes, cinemas))
+        return 10 if has_changes(changes) else 0
 
     old = load_state(args.state)
     changes = diff(old, snapshot)
