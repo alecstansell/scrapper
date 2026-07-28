@@ -41,15 +41,8 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Commit updated snapshot
-        if: steps.check.outputs.exit == '10'
-        run: |
-          git config user.name "odyssey-monitor"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add odyssey_state.json
-          git commit -m "Odyssey listings updated ($(date -u +%Y-%m-%dT%H:%MZ))"
-          git push
-
+      # The alert is the whole point, so it goes first and nothing is allowed to
+      # suppress it -- a failed push must never cost us the notification.
       - name: Open alert issue
         if: steps.check.outputs.exit == '10'
         env:
@@ -60,6 +53,16 @@ jobs:
             --title "ODYSSEY TICKETS: $headline" \
             --body-file report.txt \
             --repo "$GITHUB_REPOSITORY"
+
+      - name: Commit updated snapshot
+        if: always() && steps.check.outputs.exit == '10'
+        continue-on-error: true
+        run: |
+          git config user.name "odyssey-monitor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add odyssey_state.json
+          git commit -m "Odyssey listings updated ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push
 
       - name: Fail if the monitor broke
         if: steps.check.outputs.exit == '1'
