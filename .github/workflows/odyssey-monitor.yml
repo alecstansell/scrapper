@@ -43,8 +43,11 @@ jobs:
 
       # The alert is the whole point, so it goes first and nothing is allowed to
       # suppress it -- a failed push must never cost us the notification.
+      # Forks have Issues disabled by default, so this is best-effort; the
+      # deliberate job failure at the end is the guaranteed notification.
       - name: Open alert issue
         if: steps.check.outputs.exit == '10'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -64,13 +67,18 @@ jobs:
           git commit -m "Odyssey listings updated ($(date -u +%Y-%m-%dT%H:%MZ))"
           git push
 
+      # GitHub emails the repo owner when a workflow run fails, and that email
+      # needs no repository features enabled. So a drop deliberately fails the
+      # run: it is the one notification channel guaranteed to reach the owner.
+      - name: Fail loudly so the notification email fires
+        if: always() && steps.check.outputs.exit == '10'
+        run: |
+          echo "::error title=ODYSSEY TICKETS::$(head -1 report.txt)"
+          echo "New Odyssey dates are on sale - see the run summary for seats and links."
+          exit 1
+
       - name: Fail if the monitor broke
         if: steps.check.outputs.exit == '1'
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          gh issue create \
-            --title "Odyssey monitor is BROKEN" \
-            --body-file report.txt \
-            --repo "$GITHUB_REPOSITORY"
+          echo "::error title=Odyssey monitor BROKEN::$(head -1 report.txt)"
           exit 1
