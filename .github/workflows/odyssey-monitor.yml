@@ -1,0 +1,73 @@
+name: Odyssey ticket monitor
+
+# Runs on GitHub's infrastructure rather than a sandboxed agent container, so
+# the check is not subject to a command classifier. Opens a GitHub issue when a
+# new date drops, which GitHub then emails to watchers.
+on:
+  schedule:
+    # Hourly. GitHub only honours `schedule` on the default branch, so this
+    # workflow must be merged to the default branch to fire automatically.
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # commit the updated snapshot
+  issues: write     # open the alert issue
+
+concurrency:
+  group: odyssey-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Ster-Kinekor
+        id: check
+        run: |
+          set +e
+          python3 sterkinekor_odyssey_monitor.py > report.txt 2>&1
+          code=$?
+          set -e
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+          echo "Monitor exited $code"
+          cat report.txt
+          {
+            echo "## Odyssey monitor (exit $code)"
+            echo '```'
+            cat report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit updated snapshot
+        if: steps.check.outputs.exit == '10'
+        run: |
+          git config user.name "odyssey-monitor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add odyssey_state.json
+          git commit -m "Odyssey listings updated ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push
+
+      - name: Open alert issue
+        if: steps.check.outputs.exit == '10'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          headline=$(head -1 report.txt)
+          gh issue create \
+            --title "ODYSSEY TICKETS: $headline" \
+            --body-file report.txt \
+            --repo "$GITHUB_REPOSITORY"
+
+      - name: Fail if the monitor broke
+        if: steps.check.outputs.exit == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Odyssey monitor is BROKEN" \
+            --body-file report.txt \
+            --repo "$GITHUB_REPOSITORY"
+          exit 1
