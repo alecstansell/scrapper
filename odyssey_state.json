@@ -1,29 +1,10 @@
 {
- "checkedAt": "2026-07-27T22:32:05+00:00",
+ "checkedAt": "2026-07-28T11:19:15+00:00",
  "movie": "The Odyssey",
  "movieId": 630,
  "snapshot": {
   "V&A": {
-   "2026-07-27": {},
    "2026-07-28": {
-    "10-574425": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-07-28T09:15:00.000Z",
-     "time": "9:15 AM"
-    },
-    "10-574426": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-07-28T12:45:00.000Z",
-     "time": "12:45 PM"
-    },
     "10-574427": {
      "formats": [
       "2D",
@@ -41,15 +22,6 @@
      "screen": "Screen 2",
      "start": "2026-07-28T20:00:00.000Z",
      "time": "8:00 PM"
-    },
-    "10-576516": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-07-28T11:30:00.000Z",
-     "time": "11:30 AM"
     },
     "10-576525": {
      "formats": [
@@ -635,6 +607,166 @@
      ],
      "screen": "Screen 10",
      "start": "2026-08-04T19:30:00.000Z",
+     "time": "7:30 PM"
+    }
+   },
+   "2026-08-05": {
+    "10-582160": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-08-05T12:15:00.000Z",
+     "time": "12:15 PM"
+    },
+    "10-582161": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-08-05T16:00:00.000Z",
+     "time": "4:00 PM"
+    },
+    "10-582162": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-08-05T19:45:00.000Z",
+     "time": "7:45 PM"
+    },
+    "10-584015": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-05T12:00:00.000Z",
+     "time": "12:00 PM"
+    },
+    "10-584017": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 10",
+     "start": "2026-08-05T12:00:00.000Z",
+     "time": "12:00 PM"
+    },
+    "10-584027": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-05T15:30:00.000Z",
+     "time": "3:30 PM"
+    },
+    "10-584028": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 10",
+     "start": "2026-08-05T15:45:00.000Z",
+     "time": "3:45 PM"
+    },
+    "10-584034": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-05T19:15:00.000Z",
+     "time": "7:15 PM"
+    },
+    "10-584036": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 10",
+     "start": "2026-08-05T19:30:00.000Z",
+     "time": "7:30 PM"
+    }
+   },
+   "2026-08-06": {
+    "10-582163": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-08-06T12:15:00.000Z",
+     "time": "12:15 PM"
+    },
+    "10-582164": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-08-06T16:00:00.000Z",
+     "time": "4:00 PM"
+    },
+    "10-582165": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-08-06T19:45:00.000Z",
+     "time": "7:45 PM"
+    },
+    "10-584042": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-06T12:00:00.000Z",
+     "time": "12:00 PM"
+    },
+    "10-584044": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 10",
+     "start": "2026-08-06T12:00:00.000Z",
+     "time": "12:00 PM"
+    },
+    "10-584054": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-06T15:30:00.000Z",
+     "time": "3:30 PM"
+    },
+    "10-584056": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 10",
+     "start": "2026-08-06T15:45:00.000Z",
+     "time": "3:45 PM"
+    },
+    "10-584063": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-06T19:15:00.000Z",
+     "time": "7:15 PM"
+    },
+    "10-584065": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 10",
+     "start": "2026-08-06T19:30:00.000Z",
      "time": "7:30 PM"
     }
    }
