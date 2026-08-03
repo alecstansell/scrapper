@@ -1,242 +1,10 @@
 {
- "checkedAt": "2026-07-31T10:01:38+00:00",
+ "checkedAt": "2026-08-03T11:47:33+00:00",
  "movie": "The Odyssey",
  "movieId": 630,
  "snapshot": {
   "V&A": {
-   "2026-07-31": {
-    "10-582144": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-07-31T12:15:00.000Z",
-     "time": "12:15 PM"
-    },
-    "10-582145": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-07-31T16:00:00.000Z",
-     "time": "4:00 PM"
-    },
-    "10-582146": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-07-31T19:45:00.000Z",
-     "time": "7:45 PM"
-    },
-    "10-583494": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-07-31T19:30:00.000Z",
-     "time": "7:30 PM"
-    },
-    "10-583743": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-07-31T15:30:00.000Z",
-     "time": "3:30 PM"
-    },
-    "10-583745": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-07-31T15:45:00.000Z",
-     "time": "3:45 PM"
-    }
-   },
-   "2026-08-01": {
-    "10-582147": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-01T12:15:00.000Z",
-     "time": "12:15 PM"
-    },
-    "10-582148": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-01T16:00:00.000Z",
-     "time": "4:00 PM"
-    },
-    "10-582149": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-01T19:45:00.000Z",
-     "time": "7:45 PM"
-    },
-    "10-583910": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-01T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-583912": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-01T11:00:00.000Z",
-     "time": "11:00 AM"
-    },
-    "10-583916": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-01T15:30:00.000Z",
-     "time": "3:30 PM"
-    },
-    "10-583918": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-01T14:30:00.000Z",
-     "time": "2:30 PM"
-    },
-    "10-583923": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-01T19:15:00.000Z",
-     "time": "7:15 PM"
-    },
-    "10-583925": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-01T18:30:00.000Z",
-     "time": "6:30 PM"
-    },
-    "10-584200": {
-     "formats": [
-      "2D",
-      "NOUVEAU"
-     ],
-     "screen": "Screen 7",
-     "start": "2026-08-01T10:15:00.000Z",
-     "time": "10:15 AM"
-    }
-   },
-   "2026-08-02": {
-    "10-582150": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-02T10:45:00.000Z",
-     "time": "10:45 AM"
-    },
-    "10-582152": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-02T14:30:00.000Z",
-     "time": "2:30 PM"
-    },
-    "10-582153": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-02T18:15:00.000Z",
-     "time": "6:15 PM"
-    },
-    "10-583931": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-02T10:00:00.000Z",
-     "time": "10:00 AM"
-    },
-    "10-583933": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-02T09:30:00.000Z",
-     "time": "9:30 AM"
-    },
-    "10-583940": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-02T13:45:00.000Z",
-     "time": "1:45 PM"
-    },
-    "10-583942": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-02T13:15:00.000Z",
-     "time": "1:15 PM"
-    },
-    "10-583949": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-02T17:30:00.000Z",
-     "time": "5:30 PM"
-    },
-    "10-583951": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-02T17:00:00.000Z",
-     "time": "5:00 PM"
-    }
-   },
    "2026-08-03": {
-    "10-582154": {
-     "formats": [
-      "2D",
-      "IMAX"
-     ],
-     "screen": "Screen 2",
-     "start": "2026-08-03T12:15:00.000Z",
-     "time": "12:15 PM"
-    },
     "10-582155": {
      "formats": [
       "2D",
@@ -254,23 +22,6 @@
      "screen": "Screen 2",
      "start": "2026-08-03T19:45:00.000Z",
      "time": "7:45 PM"
-    },
-    "10-583957": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-08-03T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-583959": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 10",
-     "start": "2026-08-03T12:00:00.000Z",
-     "time": "12:00 PM"
     },
     "10-583969": {
      "formats": [
@@ -574,6 +325,59 @@
      "screen": "Screen 2",
      "start": "2026-08-07T12:15:00.000Z",
      "time": "12:15 PM"
+    },
+    "10-590652": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-07T18:45:00.000Z",
+     "time": "6:45 PM"
+    },
+    "10-590661": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-07T17:00:00.000Z",
+     "time": "5:00 PM"
+    },
+    "10-590662": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-07T19:00:00.000Z",
+     "time": "7:00 PM"
+    },
+    "10-591480": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-07T15:00:00.000Z",
+     "time": "3:00 PM"
+    },
+    "10-591481": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-07T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-591484": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-07T10:30:00.000Z",
+     "time": "10:30 AM"
     }
    },
    "2026-08-08": {
@@ -603,6 +407,59 @@
      "screen": "Screen 2",
      "start": "2026-08-08T19:45:00.000Z",
      "time": "7:45 PM"
+    },
+    "10-591523": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-08T10:30:00.000Z",
+     "time": "10:30 AM"
+    },
+    "10-591525": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-08T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-591539": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-08T15:00:00.000Z",
+     "time": "3:00 PM"
+    },
+    "10-591546": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-08T17:00:00.000Z",
+     "time": "5:00 PM"
+    },
+    "10-591551": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-08T18:45:00.000Z",
+     "time": "6:45 PM"
+    },
+    "10-591553": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-08T19:00:00.000Z",
+     "time": "7:00 PM"
     }
    },
    "2026-08-09": {
@@ -632,6 +489,49 @@
      "screen": "Screen 2",
      "start": "2026-08-09T17:45:00.000Z",
      "time": "5:45 PM"
+    },
+    "10-591563": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-09T10:00:00.000Z",
+     "time": "10:00 AM"
+    },
+    "10-591583": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-09T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-591588": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-09T17:30:00.000Z",
+     "time": "5:30 PM"
+    },
+    "10-591590": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-09T17:15:00.000Z",
+     "time": "5:15 PM"
+    },
+    "10-591978": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 11",
+     "start": "2026-08-09T14:45:00.000Z",
+     "time": "2:45 PM"
     }
    },
    "2026-08-10": {
@@ -661,6 +561,59 @@
      "screen": "Screen 2",
      "start": "2026-08-10T19:45:00.000Z",
      "time": "7:45 PM"
+    },
+    "10-591600": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-10T10:30:00.000Z",
+     "time": "10:30 AM"
+    },
+    "10-591602": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-10T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-591616": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-10T15:00:00.000Z",
+     "time": "3:00 PM"
+    },
+    "10-591623": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-10T17:00:00.000Z",
+     "time": "5:00 PM"
+    },
+    "10-591628": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-10T18:45:00.000Z",
+     "time": "6:45 PM"
+    },
+    "10-591630": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-10T19:00:00.000Z",
+     "time": "7:00 PM"
     }
    },
    "2026-08-11": {
@@ -690,6 +643,59 @@
      "screen": "Screen 2",
      "start": "2026-08-11T19:45:00.000Z",
      "time": "7:45 PM"
+    },
+    "10-591985": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-11T10:30:00.000Z",
+     "time": "10:30 AM"
+    },
+    "10-591987": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-11T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-592001": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-11T15:00:00.000Z",
+     "time": "3:00 PM"
+    },
+    "10-592008": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-11T17:00:00.000Z",
+     "time": "5:00 PM"
+    },
+    "10-592013": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-11T18:45:00.000Z",
+     "time": "6:45 PM"
+    },
+    "10-592015": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-11T19:00:00.000Z",
+     "time": "7:00 PM"
     }
    },
    "2026-08-12": {
@@ -719,6 +725,59 @@
      "screen": "Screen 2",
      "start": "2026-08-12T19:45:00.000Z",
      "time": "7:45 PM"
+    },
+    "10-592032": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-12T10:30:00.000Z",
+     "time": "10:30 AM"
+    },
+    "10-592034": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-12T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-592048": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-12T15:00:00.000Z",
+     "time": "3:00 PM"
+    },
+    "10-592054": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-12T17:00:00.000Z",
+     "time": "5:00 PM"
+    },
+    "10-592060": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-12T18:45:00.000Z",
+     "time": "6:45 PM"
+    },
+    "10-592061": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-12T19:00:00.000Z",
+     "time": "7:00 PM"
     }
    },
    "2026-08-13": {
@@ -748,6 +807,59 @@
      "screen": "Screen 2",
      "start": "2026-08-13T19:45:00.000Z",
      "time": "7:45 PM"
+    },
+    "10-592073": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-13T10:30:00.000Z",
+     "time": "10:30 AM"
+    },
+    "10-592075": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-13T11:15:00.000Z",
+     "time": "11:15 AM"
+    },
+    "10-592089": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-13T15:00:00.000Z",
+     "time": "3:00 PM"
+    },
+    "10-592095": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-08-13T17:00:00.000Z",
+     "time": "5:00 PM"
+    },
+    "10-592101": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 4",
+     "start": "2026-08-13T18:45:00.000Z",
+     "time": "6:45 PM"
+    },
+    "10-592102": {
+     "formats": [
+      "2D"
+     ],
+     "screen": "Screen 13",
+     "start": "2026-08-13T19:00:00.000Z",
+     "time": "7:00 PM"
     }
    }
   }
