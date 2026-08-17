@@ -1,18 +1,10 @@
 {
- "checkedAt": "2026-08-17T10:49:55+00:00",
+ "checkedAt": "2026-08-17T13:09:07+00:00",
  "movie": "The Odyssey",
  "movieId": 630,
  "snapshot": {
   "V&A": {
    "2026-08-17": {
-    "10-599993": {
-     "formats": [
-      "2D"
-     ],
-     "screen": "Screen 13",
-     "start": "2026-08-17T13:45:00.000Z",
-     "time": "1:45 PM"
-    },
     "10-600002": {
      "formats": [
       "2D",
@@ -303,6 +295,15 @@
      "screen": "Screen 3",
      "start": "2026-08-22T17:00:00.000Z",
      "time": "5:00 PM"
+    },
+    "10-611884": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 3",
+     "start": "2026-08-22T09:45:00.000Z",
+     "time": "9:45 AM"
     }
    },
    "2026-08-23": {
@@ -339,8 +340,8 @@
       "CINE PRESTIGE"
      ],
      "screen": "Screen 3",
-     "start": "2026-08-23T13:15:00.000Z",
-     "time": "1:15 PM"
+     "start": "2026-08-23T11:00:00.000Z",
+     "time": "11:00 AM"
     },
     "10-611680": {
      "formats": [
@@ -348,8 +349,8 @@
       "CINE PRESTIGE"
      ],
      "screen": "Screen 3",
-     "start": "2026-08-23T17:00:00.000Z",
-     "time": "5:00 PM"
+     "start": "2026-08-23T14:45:00.000Z",
+     "time": "2:45 PM"
     }
    },
    "2026-08-24": {
