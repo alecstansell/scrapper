@@ -1,194 +1,10 @@
 {
- "checkedAt": "2026-11-02T18:27:33+00:00",
+ "checkedAt": "2026-11-09T11:41:42+00:00",
  "movie": "The Odyssey",
  "movieId": 630,
  "snapshot": {
   "V&A": {
-   "2026-11-02": {},
-   "2026-11-03": {
-    "10-704960": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-03T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-704972": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-03T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-704981": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-03T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
-   "2026-11-04": {
-    "10-704991": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-04T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-705005": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-04T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-705015": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-04T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
-   "2026-11-05": {
-    "10-705026": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-05T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-705040": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-05T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-705050": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 5",
-     "start": "2026-11-05T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
-   "2026-11-06": {
-    "10-713236": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-06T19:30:00.000Z",
-     "time": "7:30 PM"
-    },
-    "10-714964": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-06T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-714965": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-06T12:00:00.000Z",
-     "time": "12:00 PM"
-    }
-   },
-   "2026-11-07": {
-    "10-714985": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-07T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-715001": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-07T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-715012": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-07T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
-   "2026-11-08": {
-    "10-715023": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-08T10:00:00.000Z",
-     "time": "10:00 AM"
-    },
-    "10-715041": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-08T13:45:00.000Z",
-     "time": "1:45 PM"
-    },
-    "10-715053": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-08T17:30:00.000Z",
-     "time": "5:30 PM"
-    }
-   },
    "2026-11-09": {
-    "10-715067": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-09T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
     "10-715085": {
      "formats": [
       "2D",
@@ -293,6 +109,72 @@
      "screen": "Screen 3",
      "start": "2026-11-12T19:30:00.000Z",
      "time": "7:30 PM"
+    }
+   },
+   "2026-11-13": {
+    "10-720733": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-13T16:30:00.000Z",
+     "time": "4:30 PM"
+    }
+   },
+   "2026-11-14": {
+    "10-722174": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-14T16:30:00.000Z",
+     "time": "4:30 PM"
+    }
+   },
+   "2026-11-15": {
+    "10-722217": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-15T14:15:00.000Z",
+     "time": "2:15 PM"
+    }
+   },
+   "2026-11-16": {
+    "10-722261": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-16T16:30:00.000Z",
+     "time": "4:30 PM"
+    }
+   },
+   "2026-11-17": {
+    "10-722309": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-17T16:30:00.000Z",
+     "time": "4:30 PM"
+    }
+   },
+   "2026-11-18": {
+    "10-722357": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-18T16:30:00.000Z",
+     "time": "4:30 PM"
     }
    }
   }
