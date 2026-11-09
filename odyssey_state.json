@@ -1,29 +1,9 @@
 {
- "checkedAt": "2026-11-09T11:41:42+00:00",
+ "checkedAt": "2026-11-09T22:26:30+00:00",
  "movie": "The Odyssey",
  "movieId": 630,
  "snapshot": {
   "V&A": {
-   "2026-11-09": {
-    "10-715085": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-09T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-715097": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-09T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
    "2026-11-10": {
     "10-715110": {
      "formats": [
@@ -174,6 +154,17 @@
      ],
      "screen": "Screen 5",
      "start": "2026-11-18T16:30:00.000Z",
+     "time": "4:30 PM"
+    }
+   },
+   "2026-11-19": {
+    "10-722399": {
+     "formats": [
+      "2D",
+      "CINE PRESTIGE"
+     ],
+     "screen": "Screen 5",
+     "start": "2026-11-19T16:30:00.000Z",
      "time": "4:30 PM"
     }
    }
