@@ -1,96 +1,10 @@
 {
- "checkedAt": "2026-11-09T22:26:30+00:00",
+ "checkedAt": "2026-11-12T20:52:23+00:00",
  "movie": "The Odyssey",
  "movieId": 630,
  "snapshot": {
   "V&A": {
-   "2026-11-10": {
-    "10-715110": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-10T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-715128": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-10T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-715140": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-10T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
-   "2026-11-11": {
-    "10-715153": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-11T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-715171": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-11T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-715183": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-11T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
-   "2026-11-12": {
-    "10-715196": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-12T12:00:00.000Z",
-     "time": "12:00 PM"
-    },
-    "10-715214": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-12T15:45:00.000Z",
-     "time": "3:45 PM"
-    },
-    "10-715225": {
-     "formats": [
-      "2D",
-      "CINE PRESTIGE"
-     ],
-     "screen": "Screen 3",
-     "start": "2026-11-12T19:30:00.000Z",
-     "time": "7:30 PM"
-    }
-   },
+   "2026-11-12": {},
    "2026-11-13": {
     "10-720733": {
      "formats": [
@@ -166,6 +80,28 @@
      "screen": "Screen 5",
      "start": "2026-11-19T16:30:00.000Z",
      "time": "4:30 PM"
+    }
+   },
+   "2026-12-12": {
+    "10-729438": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-12-12T12:00:00.000Z",
+     "time": "12:00 PM"
+    }
+   },
+   "2026-12-13": {
+    "10-729441": {
+     "formats": [
+      "2D",
+      "IMAX"
+     ],
+     "screen": "Screen 2",
+     "start": "2026-12-13T09:00:00.000Z",
+     "time": "9:00 AM"
     }
    }
   }
